@@ -13,17 +13,20 @@ import lombok.NoArgsConstructor;
 public class JogadorModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
+    @Column(name = "id")
     private Long id;
+    @Column(name = "nome")
     private String nome;
 
     @Column(unique = true)
     private String email;
-
+    @Column(name = "posicao")
     private Posicao posicao;
+    @Column(name = "nacionalidade")
     private String nacionalidade;
-
+    @Column(name = "numeroDaCamisa")
     private int numeroDaCamisa;
+    @Column(name = "idade")
     private int idade;
 
     @ManyToOne //O jogador tem apenas um clube.

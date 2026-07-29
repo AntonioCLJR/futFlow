@@ -1,4 +1,4 @@
-package dev.java.futFlow;
+package dev.java.futFlow.Jogadores;
 
 public enum Posicao {
     GOL,

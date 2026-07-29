@@ -9,8 +9,4 @@ public class FutFlowApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(FutFlowApplication.class, args);
 	}
-
-
-
-
 }

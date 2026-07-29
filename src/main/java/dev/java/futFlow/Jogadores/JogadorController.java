@@ -1,11 +1,11 @@
-package dev.java.futFlow;
+package dev.java.futFlow.Jogadores;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping
-public class Controller {
+public class JogadorController {
 
     @GetMapping("/boasVindas")
 public String BoasVindas(){

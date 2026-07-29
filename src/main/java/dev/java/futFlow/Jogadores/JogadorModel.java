@@ -1,26 +1,33 @@
-package dev.java.futFlow;
+package dev.java.futFlow.Jogadores;
+import dev.java.futFlow.Clubes.ClubeModel;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "tb_cadastro")
 public class JogadorModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
     private String nome;
     private String email;
     private Posicao posicao;
-    private String clube;
+    private String nacionalidade;
     private int numeroDaCamisa;
     private int idade;
+    @ManyToOne //O jogador tem apenas um clube.
+    @JoinColumn(name = "clube_id") //Chave estrangeira
+    private ClubeModel clube;
 
-    public JogadorModel(String nome, String email, Posicao posicao, String clube, int numeroDaCamisa, int idade) {
+
+    public JogadorModel(String nome, String email, Posicao posicao, String nacionalidade, int numeroDaCamisa, int idade) {
         this.nome = nome;
         this.email = email;
         this.posicao = posicao;
-        this.clube = clube;
+        this.nacionalidade = nacionalidade;
         this.numeroDaCamisa = numeroDaCamisa;
         this.idade = idade;
     }
@@ -53,12 +60,12 @@ public class JogadorModel {
         this.posicao = posicao;
     }
 
-    public String getClube() {
-        return clube;
+    public String getNacionalidade() {
+        return nacionalidade;
     }
 
-    public void setClube(String clube) {
-        this.clube = clube;
+    public void setNacionalidade(String nacionalidade) {
+        this.nacionalidade = nacionalidade;
     }
 
     public int getNumeroDaCamisa() {

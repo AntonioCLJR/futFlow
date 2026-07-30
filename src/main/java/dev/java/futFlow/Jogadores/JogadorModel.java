@@ -20,6 +20,7 @@ public class JogadorModel {
 
     @Column(unique = true)
     private String email;
+    @Enumerated(EnumType.STRING)
     @Column(name = "posicao")
     private Posicao posicao;
     @Column(name = "nacionalidade")

@@ -2,7 +2,7 @@ package dev.java.futFlow.Jogadores;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
+@RequestMapping("/jogadores")
 public class JogadorController {
 
     @GetMapping("/boasVindas")
@@ -14,12 +14,13 @@ public String BoasVindas(){
     public String criarJogador(){
         return "Jogador Criado!";
 }
+
 @GetMapping("/listar")
     public String mostrarTodosJogadores(){
         return  "Todos";
 }
 
-@GetMapping("/todos")
+@GetMapping("/listarID")
     public  String mostrarTodosJogadoresID(){
         return  "Todos ID";
 }

@@ -10,25 +10,26 @@ public String BoasVindas(){
  return "Seja bem vindo ao FutFlow";
 }
 
-@PostMapping("/adicionarjogador")
+@PostMapping("/criar")
     public String criarJogador(){
         return "Jogador Criado!";
 }
-@GetMapping("/todosjogadores")
+@GetMapping("/listar")
     public String mostrarTodosJogadores(){
         return  "Todos";
 }
 
-@GetMapping("/todosjogadoresID")
+@GetMapping("/todos")
     public  String mostrarTodosJogadoresID(){
         return  "Todos ID";
 }
 
-@PutMapping("/alterarjogadorID")
+@PutMapping("/alterar")
     public String alterarID(){
         return  "Alterar ID";
 }
-@DeleteMapping("/deletarjogadorID")
+
+@DeleteMapping("/deletar")
     public  String deletarJogador(){
         return   "Deletar Jogador";
 }

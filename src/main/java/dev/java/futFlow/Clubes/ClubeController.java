@@ -1,14 +1,28 @@
 package dev.java.futFlow.Clubes;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
+@RequestMapping("clubes")
 public class ClubeController {
 
-    public String BoasVindasClubes(){
-        return "Seja bem vindo ao FutFlow, aqui você pode cadastrar o time!";
+    @PostMapping("/criar")
+    public String criarClube(){
+        return "Clube criado com sucesso";
+    }
+
+    @GetMapping("/listar")
+    public String mostrarClubes(){
+        return "Clubes listados com sucesso";
+    }
+
+    @PutMapping("/alterar")
+    public String alterarClube(){
+        return "Clube alterado com sucesso";
+    }
+    @DeleteMapping("/deletar")
+    public String deletarClube(){
+        return "Clube deletado com sucesso";
     }
 
 }

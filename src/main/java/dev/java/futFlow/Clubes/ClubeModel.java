@@ -1,5 +1,6 @@
 package dev.java.futFlow.Clubes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.java.futFlow.Jogadores.JogadorModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,6 +25,7 @@ public class ClubeModel {
     private String pais;
     private int anoDeCriacao;
     @OneToMany(mappedBy = "clube") //Um clube pode ter vários jogadores.
+    @JsonIgnore
     private List<JogadorModel> jogador;
 
 }

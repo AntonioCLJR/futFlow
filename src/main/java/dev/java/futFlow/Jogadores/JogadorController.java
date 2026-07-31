@@ -28,9 +28,9 @@ public class JogadorController {
         return jogadorService.listarJogadores();
 }
 
-    @GetMapping("/listarID")
-    public  String mostrarTodosJogadoresID(){
-        return  "Todos ID";
+    @GetMapping("/listar/{id}")
+    public  JogadorModel listarJogadorPorId(@PathVariable Long id){
+        return jogadorService.listarJogadoresPorId(id);
 }
 
     @PutMapping("/alterar")

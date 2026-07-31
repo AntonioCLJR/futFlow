@@ -1,6 +1,7 @@
 package dev.java.futFlow.Jogadores;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class JogadorService {
@@ -15,8 +16,9 @@ public class JogadorService {
         return  jogadorRepository.findAll();
     }
 
-    public List<JogadorModel> listarJogadoresPorId(){
-        return jogadorRepository.findAll().;
+    public JogadorModel listarJogadoresPorId(Long id){
+        Optional<JogadorModel> jogadorPorId = jogadorRepository.findById(id);
+        return jogadorPorId.orElse(null);
     }
 
 }

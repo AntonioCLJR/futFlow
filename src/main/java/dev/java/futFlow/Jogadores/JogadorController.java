@@ -19,8 +19,8 @@ public class JogadorController {
 }
 
     @PostMapping("/criar")
-    public String criarJogador(){
-        return "Jogador Criado!";
+    public JogadorModel criarJogador(@RequestBody JogadorModel jogador){
+        return jogadorService.criarJogador(jogador);
 }
 
     @GetMapping("/listar")

@@ -1,6 +1,7 @@
 package dev.java.futFlow.Clubes;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,6 +31,13 @@ public class ClubeService {
 
     public void deletarClube(@PathVariable Long id){
         clubeRepository.deleteById(id);
+    }
+
+    public ClubeModel alterarClube(@PathVariable Long id, @RequestBody ClubeModel clubeModel){
+        if (clubeRepository.existsById(id)){
+            clubeRepository.save(clubeModel);
+        }
+        return null;
     }
 
 }

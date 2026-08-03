@@ -29,9 +29,9 @@ public class ClubeController {
         return clubeService.listarClubePorId(id);
     }
 
-    @PutMapping("/alterar")
-    public String alterarClube(){
-        return "Clube alterado com sucesso";
+    @PutMapping("/alterar/{id}")
+    public ClubeModel alterarClube(@PathVariable Long id, @RequestBody ClubeModel clubeModel){
+        return clubeService.alterarClube(id, clubeModel);
     }
     @DeleteMapping("/deletar/{id}")
     public void deletarClube(@PathVariable Long id){

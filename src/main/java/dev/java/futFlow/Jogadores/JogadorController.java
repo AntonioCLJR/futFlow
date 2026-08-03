@@ -34,9 +34,9 @@ public class JogadorController {
         return jogadorService.listarJogadoresPorId(id);
 }
 
-    @PutMapping("/alterar")
-    public String alterarID(){
-        return  "Alterar ID";
+    @PutMapping("/alterar/{id}")
+    public JogadorModel alterarID(@PathVariable Long id, @RequestBody @PatchJogadorModel jogadorModel){
+        return jogadorService.alterarJogador(id, jogadorModel);
 }
 
     @DeleteMapping("/deletar/{id}")

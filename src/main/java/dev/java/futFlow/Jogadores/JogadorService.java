@@ -30,4 +30,12 @@ public class JogadorService {
         System.out.println("Ninja DELETADO!");
     }
 
+    public JogadorModel alterarJogador(Long id, JogadorModel jogadorAtualizado){
+        if (jogadorRepository.existsById(id)){
+            jogadorAtualizado.setId(id);
+            return  jogadorRepository.save(jogadorAtualizado);
+        }
+        return null;
+    }
+
 }

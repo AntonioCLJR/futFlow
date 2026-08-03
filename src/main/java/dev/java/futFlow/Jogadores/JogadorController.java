@@ -3,6 +3,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
 @RequestMapping("/jogadores")
 public class JogadorController {
@@ -19,8 +20,8 @@ public class JogadorController {
 }
 
     @PostMapping("/criar")
-    public JogadorModel criarJogador(@RequestBody JogadorModel jogador){
-        return jogadorService.criarJogador(jogador);
+    public JogadorModel criarJogador(@RequestBody JogadorModel jogadorModel){
+        return jogadorService.criarJogador(jogadorModel);
 }
 
     @GetMapping("/listar")

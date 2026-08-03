@@ -1,9 +1,17 @@
 package dev.java.futFlow.Jogadores;
 
+import dev.java.futFlow.Clubes.ClubeModel;
+import dev.java.futFlow.Clubes.ClubeRepository;
 import org.springframework.stereotype.Component;
 
 @Component
 public class JogadorMapper {
+
+    private ClubeRepository clubeRepository;
+
+    public JogadorMapper(ClubeRepository clubeRepository) {
+        this.clubeRepository = clubeRepository;
+    }
 
     public JogadorModel map(JogadorDTO jogadorDTO) {
         JogadorModel jogadorModel = new JogadorModel();
@@ -14,8 +22,12 @@ public class JogadorMapper {
         jogadorModel.setNacionalidade(jogadorDTO.getNacionalidade());
         jogadorModel.setNumeroDaCamisa(jogadorDTO.getNumeroDaCamisa());
         jogadorModel.setPosicao(jogadorDTO.getPosicao());
-        jogadorModel.setClube(jogadorDTO.getClube());
-        return  jogadorModel;
+
+        ClubeModel clube = clubeRepository.findById(jogadorDTO.getClubeId())
+                .orElseThrow(() -> new RuntimeException("Clube não encontrado com id: " + jogadorDTO.getClubeId()));
+        jogadorModel.setClube(clube);
+
+        return jogadorModel;
     }
 
     public JogadorDTO map(JogadorModel jogadorModel) {
@@ -27,7 +39,7 @@ public class JogadorMapper {
         jogadorDTO.setNacionalidade(jogadorModel.getNacionalidade());
         jogadorDTO.setNumeroDaCamisa(jogadorModel.getNumeroDaCamisa());
         jogadorDTO.setPosicao(jogadorModel.getPosicao());
-        jogadorDTO.setClube(jogadorModel.getClube());
+        jogadorDTO.setClubeId(jogadorModel.getClube().getId());
         return jogadorDTO;
     }
 }

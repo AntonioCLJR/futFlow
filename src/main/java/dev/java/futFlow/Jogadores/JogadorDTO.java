@@ -18,6 +18,6 @@ public class JogadorDTO {
     private String nacionalidade;
     private int numeroDaCamisa;
     private int idade;
-    private ClubeModel clube;
+    private Long clubeId;
 
 }

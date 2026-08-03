@@ -22,7 +22,6 @@ public class JogadorMapper {
         jogadorModel.setNacionalidade(jogadorDTO.getNacionalidade());
         jogadorModel.setNumeroDaCamisa(jogadorDTO.getNumeroDaCamisa());
         jogadorModel.setPosicao(jogadorDTO.getPosicao());
-
         ClubeModel clube = clubeRepository.findById(jogadorDTO.getClubeId())
                 .orElseThrow(() -> new RuntimeException("Clube não encontrado com id: " + jogadorDTO.getClubeId()));
         jogadorModel.setClube(clube);

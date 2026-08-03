@@ -25,18 +25,18 @@ public class JogadorController {
 }
 
     @GetMapping("/listar")
-    public List<JogadorModel> mostrarTodosJogadores(){
+    public List<JogadorDTO> mostrarTodosJogadores(){
         return jogadorService.listarJogadores();
 }
 
     @GetMapping("/listar/{id}")
-    public  JogadorModel listarJogadorPorId(@PathVariable Long id){
+    public  JogadorDTO listarJogadorPorId(@PathVariable Long id){
         return jogadorService.listarJogadoresPorId(id);
 }
 
     @PutMapping("/alterar/{id}")
-    public JogadorModel alterarID(@PathVariable Long id, @RequestBody JogadorModel jogadorModel){
-        return jogadorService.alterarJogador(id, jogadorModel);
+    public JogadorDTO alterarID(@PathVariable Long id, @RequestBody JogadorDTO jogadorDTO){
+        return jogadorService.alterarJogador(id, jogadorDTO);
 }
 
     @DeleteMapping("/deletar/{id}")

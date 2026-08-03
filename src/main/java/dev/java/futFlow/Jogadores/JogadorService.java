@@ -2,6 +2,7 @@ package dev.java.futFlow.Jogadores;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class JogadorService {
@@ -14,19 +15,34 @@ public class JogadorService {
         this.jogadorMapper = jogadorMapper;
     }
 
-    public List<JogadorModel> listarJogadores(){
-        return  jogadorRepository.findAll();
-    }
-
-    public JogadorModel listarJogadoresPorId(Long id){
-        Optional<JogadorModel> jogadorPorId = jogadorRepository.findById(id);
-        return jogadorPorId.orElse(null);
-    }
-
     public JogadorDTO criarJogador(JogadorDTO jogadorDTO){
         JogadorModel jogador = jogadorMapper.map(jogadorDTO);
         jogador = jogadorRepository.save(jogador);
         return jogadorMapper.map(jogador);
+    }
+
+    public List<JogadorDTO> listarJogadores(){
+        List<JogadorModel> jogadores = jogadorRepository.findAll();
+        return jogadores.stream()
+                .map(jogadorMapper::map)
+                .collect(Collectors.toList());
+    }
+
+    public JogadorDTO listarJogadoresPorId(Long id){
+        Optional<JogadorModel> jogadorPorId = jogadorRepository.findById(id);
+        return jogadorPorId.map(jogadorMapper::map).orElse(null);
+
+    }
+
+    public JogadorDTO alterarJogador(Long id, JogadorDTO jogadorDTO){
+        Optional<JogadorModel> alterarJogador = jogadorRepository.findById(id);
+        if (alterarJogador.isPresent()) {
+            JogadorModel jogadorAtualizado = jogadorMapper.map(jogadorDTO);
+            jogadorAtualizado.setId(id);
+            JogadorModel jogador = jogadorRepository.save(jogadorAtualizado);
+            return jogadorMapper.map(jogador);
+        }
+        return null;
     }
 
     public void deletarJogador(Long id){
@@ -34,12 +50,6 @@ public class JogadorService {
         System.out.println("Ninja DELETADO!");
     }
 
-    public JogadorModel alterarJogador(Long id, JogadorModel jogadorAtualizado){
-        if (jogadorRepository.existsById(id)){
-            jogadorAtualizado.setId(id);
-            return  jogadorRepository.save(jogadorAtualizado);
-        }
-        return null;
-    }
+
 
 }

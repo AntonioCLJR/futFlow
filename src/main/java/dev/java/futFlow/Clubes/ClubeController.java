@@ -10,28 +10,28 @@ public class ClubeController {
 
     private ClubeService clubeService;
 
-    public ClubeController(ClubeService clubeService) {
+    public ClubeController(ClubeService clubeService, ClubeMapper clubeMapper) {
         this.clubeService = clubeService;
     }
 
     @PostMapping("/criar")
-    public ClubeModel criarClube(@RequestBody ClubeModel clube){
+    public ClubeDTO criarClube(@RequestBody ClubeDTO clube){
         return clubeService.criarClube(clube);
     }
 
     @GetMapping("/listar")
-    public List<ClubeModel> mostrarClubes(){
+    public List<ClubeDTO> mostrarClubes(){
         return clubeService.listarClubes();
     }
 
     @GetMapping("/listar/{id}")
-    public ClubeModel mostrarClubePorId(@PathVariable Long id){
+    public ClubeDTO mostrarClubePorId(@PathVariable Long id){
         return clubeService.listarClubePorId(id);
     }
 
-    @PutMapping("/alterar")
-    public String alterarClube(){
-        return "Clube alterado com sucesso";
+    @PutMapping("/alterar/{id}")
+    public ClubeDTO alterarClube(@PathVariable Long id, @RequestBody ClubeDTO clubeDTO){
+        return clubeService.alterarClube(id, clubeDTO);
     }
     @DeleteMapping("/deletar/{id}")
     public void deletarClube(@PathVariable Long id){

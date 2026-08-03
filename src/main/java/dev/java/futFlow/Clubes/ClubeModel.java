@@ -27,6 +27,8 @@ public class ClubeModel {
     @OneToMany(mappedBy = "clube") //Um clube pode ter vários jogadores.
     @JsonIgnore
     private List<JogadorModel> jogador;
+    @Column(name = "campeonato_nacional")
+    private String campeonatoNacional;
 
 }
 

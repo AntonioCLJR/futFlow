@@ -35,7 +35,7 @@ public class JogadorController {
 }
 
     @PutMapping("/alterar/{id}")
-    public JogadorModel alterarID(@PathVariable Long id, @RequestBody @PatchJogadorModel jogadorModel){
+    public JogadorModel alterarID(@PathVariable Long id, @RequestBody JogadorModel jogadorModel){
         return jogadorService.alterarJogador(id, jogadorModel);
 }
 

@@ -25,4 +25,9 @@ public class JogadorService {
         return jogadorRepository.save(jogador);
     }
 
+    public void deletarJogador(Long id){
+         jogadorRepository.deleteById(id);
+        System.out.println("Ninja DELETADO!");
+    }
+
 }

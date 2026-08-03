@@ -33,9 +33,9 @@ public class ClubeController {
     public String alterarClube(){
         return "Clube alterado com sucesso";
     }
-    @DeleteMapping("/deletar")
-    public String deletarClube(){
-        return "Clube deletado com sucesso";
+    @DeleteMapping("/deletar/{id}")
+    public void deletarClube(@PathVariable Long id){
+        clubeService.deletarClube(id);
     }
 
 }

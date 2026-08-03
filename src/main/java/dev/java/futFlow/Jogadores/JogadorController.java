@@ -39,8 +39,7 @@ public class JogadorController {
         return  "Alterar ID";
 }
 
-    @DeleteMapping("/deletar")
-    public  String deletarJogador(){
-        return   "Deletar Jogador";
+    @DeleteMapping("/deletar/{id}")
+    public void deletarJogador(@PathVariable Long id){ jogadorService.deletarJogador(id); }
 }
-}
+

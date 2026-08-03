@@ -10,12 +10,12 @@ public class ClubeController {
 
     private ClubeService clubeService;
 
-    public ClubeController(ClubeService clubeService) {
+    public ClubeController(ClubeService clubeService, ClubeMapper clubeMapper) {
         this.clubeService = clubeService;
     }
 
     @PostMapping("/criar")
-    public ClubeModel criarClube(@RequestBody ClubeModel clube){
+    public ClubeDTO criarClube(@RequestBody ClubeDTO clube){
         return clubeService.criarClube(clube);
     }
 

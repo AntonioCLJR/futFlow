@@ -10,10 +10,11 @@ import java.util.Optional;
 public class ClubeService {
 
     private ClubeRepository clubeRepository;
+    private ClubeMapper clubeMapper;
 
-
-    public ClubeService(ClubeRepository clubeRepository) {
+    public ClubeService(ClubeRepository clubeRepository, ClubeMapper clubeMapper) {
         this.clubeRepository = clubeRepository;
+        this.clubeMapper = clubeMapper;
     }
 
     public List<ClubeModel> listarClubes(){
@@ -25,8 +26,10 @@ public class ClubeService {
         return clubePorId.orElse(null);
     }
 
-    public ClubeModel criarClube(ClubeModel clube){
-        return clubeRepository.save(clube);
+    public ClubeDTO criarClube(ClubeDTO clubeDTO){
+        ClubeModel clube = clubeMapper.map(clubeDTO);
+        clube = clubeRepository.save(clube);
+        return clubeMapper.map(clube);
     }
 
     public void deletarClube(@PathVariable Long id){

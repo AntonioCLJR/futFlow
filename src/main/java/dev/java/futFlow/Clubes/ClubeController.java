@@ -20,18 +20,18 @@ public class ClubeController {
     }
 
     @GetMapping("/listar")
-    public List<ClubeModel> mostrarClubes(){
+    public List<ClubeDTO> mostrarClubes(){
         return clubeService.listarClubes();
     }
 
     @GetMapping("/listar/{id}")
-    public ClubeModel mostrarClubePorId(@PathVariable Long id){
+    public ClubeDTO mostrarClubePorId(@PathVariable Long id){
         return clubeService.listarClubePorId(id);
     }
 
     @PutMapping("/alterar/{id}")
-    public ClubeModel alterarClube(@PathVariable Long id, @RequestBody ClubeModel clubeModel){
-        return clubeService.alterarClube(id, clubeModel);
+    public ClubeDTO alterarClube(@PathVariable Long id, @RequestBody ClubeDTO clubeDTO){
+        return clubeService.alterarClube(id, clubeDTO);
     }
     @DeleteMapping("/deletar/{id}")
     public void deletarClube(@PathVariable Long id){

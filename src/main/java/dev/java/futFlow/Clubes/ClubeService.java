@@ -1,10 +1,8 @@
 package dev.java.futFlow.Clubes;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ClubeService {
@@ -17,30 +15,39 @@ public class ClubeService {
         this.clubeMapper = clubeMapper;
     }
 
-    public List<ClubeModel> listarClubes(){
-        return clubeRepository.findAll();
-    }
-
-    public ClubeModel listarClubePorId(Long id){
-        Optional<ClubeModel> clubePorId = clubeRepository.findById(id);
-        return clubePorId.orElse(null);
-    }
-
     public ClubeDTO criarClube(ClubeDTO clubeDTO){
         ClubeModel clube = clubeMapper.map(clubeDTO);
         clube = clubeRepository.save(clube);
         return clubeMapper.map(clube);
     }
 
-    public void deletarClube(@PathVariable Long id){
-        clubeRepository.deleteById(id);
+    public List<ClubeDTO> listarClubes(){
+        List<ClubeModel> clubes = clubeRepository.findAll();
+        return clubes.stream()
+                .map(clubeMapper::map)
+                .collect(Collectors.toList());
     }
 
-    public ClubeModel alterarClube(@PathVariable Long id, @RequestBody ClubeModel clubeModel){
-        if (clubeRepository.existsById(id)){
-            clubeRepository.save(clubeModel);
+    public ClubeDTO listarClubePorId(Long id){
+        Optional<ClubeModel> clubePorId = clubeRepository.findById(id);
+        return clubePorId.map(clubeMapper::map).orElse(null);
+    }
+
+    public ClubeDTO alterarClube(Long id, ClubeDTO clubeDTO){
+        Optional<ClubeModel> alterarClube = clubeRepository.findById(id);
+        if (alterarClube.isPresent()){
+            ClubeModel clubeAtualizado = clubeMapper.map(clubeDTO);
+            clubeAtualizado.setId(id);
+            ClubeModel clube = clubeRepository.save(clubeAtualizado);
+            return clubeMapper.map(clube);
         }
         return null;
     }
+
+    public void deletarClube(Long id){
+        clubeRepository.deleteById(id);
+    }
+
+
 
 }

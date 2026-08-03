@@ -7,9 +7,11 @@ import java.util.Optional;
 public class JogadorService {
 
     private JogadorRepository jogadorRepository;
+    private JogadorMapper jogadorMapper;
 
-    public JogadorService(JogadorRepository jogadorRepository) {
+    public JogadorService(JogadorRepository jogadorRepository, JogadorMapper jogadorMapper) {
         this.jogadorRepository = jogadorRepository;
+        this.jogadorMapper = jogadorMapper;
     }
 
     public List<JogadorModel> listarJogadores(){
@@ -21,8 +23,10 @@ public class JogadorService {
         return jogadorPorId.orElse(null);
     }
 
-    public JogadorModel criarJogador(JogadorModel jogador){
-        return jogadorRepository.save(jogador);
+    public JogadorDTO criarJogador(JogadorDTO jogadorDTO){
+        JogadorModel jogador = jogadorMapper.map(jogadorDTO);
+        jogador = jogadorRepository.save(jogador);
+        return jogadorMapper.map(jogador);
     }
 
     public void deletarJogador(Long id){

@@ -22,4 +22,8 @@ public class ClubeService {
         return clubePorId.orElse(null);
     }
 
+    public ClubeModel criarClube(ClubeModel clube){
+        return clubeRepository.save(clube);
+    }
+
 }

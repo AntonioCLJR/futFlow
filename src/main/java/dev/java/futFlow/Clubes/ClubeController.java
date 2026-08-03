@@ -15,8 +15,8 @@ public class ClubeController {
     }
 
     @PostMapping("/criar")
-    public String criarClube(){
-        return "Clube criado com sucesso";
+    public ClubeModel criarClube(@RequestBody ClubeModel clube){
+        return clubeService.criarClube(clube);
     }
 
     @GetMapping("/listar")

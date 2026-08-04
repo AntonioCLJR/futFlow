@@ -25,7 +25,6 @@ public class JogadorMapper {
         ClubeModel clube = clubeRepository.findById(jogadorDTO.getClubeId())
                 .orElseThrow(() -> new RuntimeException("Clube não encontrado com id: " + jogadorDTO.getClubeId()));
         jogadorModel.setClube(clube);
-
         return jogadorModel;
     }
 
@@ -39,6 +38,7 @@ public class JogadorMapper {
         jogadorDTO.setNumeroDaCamisa(jogadorModel.getNumeroDaCamisa());
         jogadorDTO.setPosicao(jogadorModel.getPosicao());
         jogadorDTO.setClubeId(jogadorModel.getClube().getId());
+        jogadorDTO.setClubeNome(jogadorModel.getClube().getNomeClube());
         return jogadorDTO;
     }
 }

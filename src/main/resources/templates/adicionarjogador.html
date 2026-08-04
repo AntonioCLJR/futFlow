@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FutFlow · Adicionar Jogador</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header class="topbar">
+    <div class="topbar-content">
+        <span class="crest">⚽</span>
+        <div>
+            <h1>FutFlow</h1>
+            <p class="subtitle">Adicionar novo jogador</p>
+        </div>
+    </div>
+</header>
+
+<main class="content">
+
+    <a class="btn-back" th:href="@{/jogadores/ui/listar}">&larr; Voltar para a lista</a>
+
+    <div class="player-card">
+
+        <form th:action="@{/jogadores/ui/adicionar}" th:object="${novoJogador}" method="post" class="form-grid">
+
+            <div class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" th:field="*{nome}" placeholder="Ex: Jonatan Calleri" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" th:field="*{email}" placeholder="jogador@email.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="idade">Idade</label>
+                <input type="number" id="idade" th:field="*{idade}" min="14" max="50" required>
+            </div>
+
+            <div class="form-group">
+                <label for="nacionalidade">Nacionalidade</label>
+                <input type="text" id="nacionalidade" th:field="*{nacionalidade}" placeholder="Ex: Brasileiro" required>
+            </div>
+
+            <div class="form-group">
+                <label for="posicao">Posição</label>
+                <select id="posicao" th:field="*{posicao}" required>
+                    <option value="">Selecione</option>
+                    <option th:each="p : ${posicoes}" th:value="${p}" th:text="${p}"></option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="numeroDaCamisa">Número da Camisa</label>
+                <input type="number" id="numeroDaCamisa" th:field="*{numeroDaCamisa}" min="1" max="99" required>
+            </div>
+
+            <div class="form-group form-group-wide">
+                <label for="clubeId">Clube</label>
+                <select id="clubeId" th:field="*{clubeId}" required>
+                    <option value="">Selecione um clube</option>
+                    <option th:each="clube : ${clubes}" th:value="${clube.id}" th:text="${clube.nomeClube}"></option>
+                </select>
+            </div>
+
+            <div class="player-actions form-actions">
+                <a class="btn-back" th:href="@{/jogadores/ui/listar}">Cancelar</a>
+                <button type="submit" class="btn-save">Salvar Jogador</button>
+            </div>
+
+        </form>
+
+    </div>
+
+</main>
+
+</body>
+</html>

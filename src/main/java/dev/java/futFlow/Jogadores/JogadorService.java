@@ -45,6 +45,10 @@ public class JogadorService {
         return null;
     }
 
+    public JogadorModel buscarJogadorModelPorId(Long id){
+        return jogadorRepository.findById(id).orElse(null);
+    }
+
     public void deletarJogador(Long id){
          jogadorRepository.deleteById(id);
     }

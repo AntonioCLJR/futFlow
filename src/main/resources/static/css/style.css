@@ -1,0 +1,579 @@
+:root {
+    --pitch-dark: #123524;
+    --grass: #2E8B57;
+    --chalk: #F6F5F0;
+    --card-white: #FFFFFF;
+    --gold: #E3B23C;
+    --red-card: #C0392B;
+    --ink: #16221C;
+    --ink-soft: #5C6A61;
+    --border-soft: #E4E1D6;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--chalk);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    background-image:
+            linear-gradient(var(--border-soft) 1px, transparent 1px),
+            linear-gradient(90deg, var(--border-soft) 1px, transparent 1px);
+    background-size: 48px 48px;
+    background-position: -1px -1px;
+}
+
+/* ---------- Topbar ---------- */
+
+.topbar {
+    background: var(--pitch-dark);
+    background-image: radial-gradient(circle at 15% 20%, rgba(46, 139, 87, 0.35), transparent 55%);
+    padding: 2.5rem 3rem;
+    box-shadow: 0 4px 24px rgba(18, 53, 36, 0.25);
+}
+
+.topbar-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.1rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.crest {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: var(--gold);
+    font-size: 1.4rem;
+    flex-shrink: 0;
+}
+
+.topbar h1 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--chalk);
+    margin: 0;
+}
+
+.subtitle {
+    margin: 0.15rem 0 0;
+    color: rgba(246, 245, 240, 0.65);
+    font-size: 0.92rem;
+}
+
+/* ---------- Content / Table ---------- */
+
+.content {
+    max-width: 1100px;
+    margin: -1.75rem auto 4rem;
+    padding: 0 1.5rem;
+}
+
+.table-card {
+    background: var(--card-white);
+    border-radius: 14px;
+    box-shadow: 0 12px 32px rgba(18, 53, 36, 0.12);
+    overflow: hidden;
+    border: 1px solid var(--border-soft);
+}
+
+.table-scroll {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead th {
+    background: var(--pitch-dark);
+    color: var(--chalk);
+    text-align: left;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.95rem 1.1rem;
+}
+
+tbody tr {
+    border-bottom: 1px solid var(--border-soft);
+    transition: background-color 0.15s ease;
+}
+
+tbody tr:nth-child(even) {
+    background: rgba(46, 139, 87, 0.045);
+}
+
+tbody tr:hover {
+    background: rgba(227, 178, 60, 0.12);
+}
+
+td {
+    padding: 0.85rem 1.1rem;
+    font-size: 0.92rem;
+    vertical-align: middle;
+}
+
+.id-cell {
+    font-family: 'Oswald', sans-serif;
+    color: var(--ink-soft);
+    font-size: 0.8rem;
+}
+
+.name-cell {
+    font-weight: 600;
+}
+
+.email-cell {
+    color: var(--ink-soft);
+}
+
+/* Número da camisa — estilo escudo */
+.jersey {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: 50%;
+    background: var(--pitch-dark);
+    border: 2px solid var(--gold);
+    color: var(--chalk);
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+/* Posição — etiqueta colorida por função */
+.pos-badge {
+    display: inline-block;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.pos-badge[data-pos="GOL"] {
+    background: rgba(227, 178, 60, 0.15);
+    color: #8A6410;
+    border: 1px solid var(--gold);
+}
+
+.pos-badge[data-pos="LD"],
+.pos-badge[data-pos="LE"],
+.pos-badge[data-pos="ZAG"] {
+    background: rgba(46, 111, 178, 0.12);
+    color: #1F4E86;
+    border: 1px solid #2E6FB2;
+}
+
+.pos-badge[data-pos="VOL"],
+.pos-badge[data-pos="MC"],
+.pos-badge[data-pos="MEI"] {
+    background: rgba(46, 139, 87, 0.15);
+    color: #1D6B3F;
+    border: 1px solid var(--grass);
+}
+
+.pos-badge[data-pos="PE"],
+.pos-badge[data-pos="PD"],
+.pos-badge[data-pos="ATA"] {
+    background: rgba(192, 57, 43, 0.12);
+    color: #96261A;
+    border: 1px solid var(--red-card);
+}
+
+/* Botão deletar — estilo "cartão vermelho" */
+.actions-cell {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+.icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.icon-btn svg {
+    width: 1.05rem;
+    height: 1.05rem;
+}
+
+.icon-btn-details {
+    background: rgba(46, 139, 87, 0.12);
+    color: var(--grass);
+    border: 1px solid var(--grass);
+}
+
+.icon-btn-details:hover {
+    background: var(--grass);
+    color: var(--chalk);
+    transform: scale(1.08);
+    box-shadow: 0 3px 10px rgba(46, 139, 87, 0.35);
+}
+
+.icon-btn-edit {
+    background: rgba(227, 178, 60, 0.15);
+    color: #8A6410;
+    border: 1px solid var(--gold);
+}
+
+.icon-btn-edit:hover {
+    background: var(--gold);
+    color: var(--pitch-dark);
+    transform: scale(1.08);
+    box-shadow: 0 3px 10px rgba(227, 178, 60, 0.4);
+}
+
+.icon-btn-delete {
+    background: rgba(192, 57, 43, 0.12);
+    color: var(--red-card);
+    border: 1px solid var(--red-card);
+}
+
+.icon-btn-delete:hover {
+    background: var(--red-card);
+    color: var(--chalk);
+    transform: scale(1.08);
+    box-shadow: 0 3px 10px rgba(192, 57, 43, 0.35);
+}
+
+.btn-delete {
+    display: inline-block;
+    background: var(--red-card);
+    color: var(--chalk);
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.5rem 0.9rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(192, 57, 43, 0.35);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-delete:hover {
+    transform: rotate(-4deg) scale(1.05);
+    box-shadow: 0 4px 12px rgba(192, 57, 43, 0.5);
+}
+
+/* ---------- Botão voltar / detalhes ---------- */
+
+.btn-back {
+    display: inline-block;
+    margin-bottom: 1.25rem;
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: color 0.15s ease;
+}
+
+.btn-back:hover {
+    color: var(--pitch-dark);
+}
+
+.btn-details {
+    display: inline-block;
+    background: var(--grass);
+    color: var(--chalk);
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.5rem 0.9rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(46, 139, 87, 0.35);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-details:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(46, 139, 87, 0.5);
+}
+
+/* ---------- Ficha do jogador ---------- */
+
+.player-card {
+    background: var(--card-white);
+    border-radius: 14px;
+    box-shadow: 0 12px 32px rgba(18, 53, 36, 0.12);
+    border: 1px solid var(--border-soft);
+    padding: 2rem 2.25rem 2.5rem;
+}
+
+.player-hero {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.75rem;
+    border-bottom: 1px solid var(--border-soft);
+}
+
+.jersey-lg {
+    width: 4.5rem;
+    height: 4.5rem;
+    font-size: 1.6rem;
+    border-width: 3px;
+    flex-shrink: 0;
+}
+
+.player-hero h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin: 0 0 0.4rem;
+    color: var(--ink);
+}
+
+.player-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.5rem;
+}
+
+.info-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.info-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+}
+
+.info-value {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.club-section {
+    margin-top: 2rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--border-soft);
+}
+
+.club-section h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--grass);
+    margin: 0 0 1.25rem;
+}
+
+.player-actions {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-soft);
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* ---------- Botão adicionar (topbar) ---------- */
+
+.btn-add {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--pitch-dark);
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.65rem 1.1rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(227, 178, 60, 0.4);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-add:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(227, 178, 60, 0.5);
+}
+
+/* ---------- Formulário ---------- */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.form-group-wide {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--ink-soft);
+}
+
+.form-group input,
+.form-group select {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    padding: 0.65rem 0.8rem;
+    border: 1px solid var(--border-soft);
+    border-radius: 8px;
+    background: var(--chalk);
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--grass);
+    box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.15);
+}
+
+.form-actions {
+    grid-column: 1 / -1;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.btn-save {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: var(--grass);
+    color: var(--chalk);
+    border: none;
+    padding: 0.75rem 1.75rem;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(46, 139, 87, 0.35);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-save:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(46, 139, 87, 0.45);
+}
+
+/* ---------- Responsivo ---------- */
+
+@media (max-width: 720px) {
+    .topbar {
+        padding: 1.75rem 1.5rem;
+    }
+
+    .content {
+        padding: 0 0.75rem;
+    }
+
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    thead tr {
+        display: none;
+    }
+
+    tbody tr {
+        margin-bottom: 1rem;
+        border: 1px solid var(--border-soft);
+        border-radius: 10px;
+        padding: 0.5rem 0.25rem;
+    }
+
+    td {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+    }
+
+    td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: var(--ink-soft);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+    }
+
+    .actions-cell {
+        justify-content: flex-end;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+.btn-edit {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--pitch-dark);
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.5rem 0.9rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(227, 178, 60, 0.4);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-edit:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(227, 178, 60, 0.5);
+}
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+}
+

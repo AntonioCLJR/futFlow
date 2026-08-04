@@ -1,5 +1,7 @@
 package dev.java.futFlow.Clubes;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -8,34 +10,57 @@ import java.util.List;
 @RequestMapping("clubes")
 public class ClubeController {
 
-    private ClubeService clubeService;
+    private final ClubeService clubeService;
 
     public ClubeController(ClubeService clubeService, ClubeMapper clubeMapper) {
         this.clubeService = clubeService;
     }
 
     @PostMapping("/criar")
-    public ClubeDTO criarClube(@RequestBody ClubeDTO clube){
-        return clubeService.criarClube(clube);
+    public ResponseEntity<String> criarClube(@RequestBody ClubeDTO clube){
+        ClubeDTO clubeDTO = clubeService.criarClube(clube);
+         return ResponseEntity.status(HttpStatus.CREATED).body("Clube Criado com sucesso: " + clubeDTO.getNomeClube());
     }
 
     @GetMapping("/listar")
-    public List<ClubeDTO> mostrarClubes(){
-        return clubeService.listarClubes();
+    public ResponseEntity<List<ClubeDTO>> mostrarClubes(){
+        List<ClubeDTO> clubes = clubeService.listarClubes();
+        if (clubes.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+        return  ResponseEntity.ok(clubes);
     }
 
     @GetMapping("/listar/{id}")
-    public ClubeDTO mostrarClubePorId(@PathVariable Long id){
-        return clubeService.listarClubePorId(id);
+    public ResponseEntity<?> mostrarClubePorId(@PathVariable Long id){
+        ClubeDTO clube = clubeService.listarClubePorId(id);
+        if (clubeService.listarClubePorId(id) != null){
+            return ResponseEntity.ok().body(clube);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("O clube com o ID: " + id + " não foi encontrado!");
+        }
     }
 
     @PutMapping("/alterar/{id}")
-    public ClubeDTO alterarClube(@PathVariable Long id, @RequestBody ClubeDTO clubeDTO){
-        return clubeService.alterarClube(id, clubeDTO);
+    public ResponseEntity<?> alterarClube(@PathVariable Long id, @RequestBody ClubeDTO clubeDTO){
+        if (clubeService.listarClubePorId(id) != null){
+            clubeService.alterarClube(id, clubeDTO);
+            return ResponseEntity.ok("Clube Alterado com sucesso!");
+        } else  {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("O clube com o ID: " + id + " não foi encontrado!");
+        }
     }
     @DeleteMapping("/deletar/{id}")
-    public void deletarClube(@PathVariable Long id){
-        clubeService.deletarClube(id);
+    public ResponseEntity<String> deletarClube(@PathVariable Long id){
+        if (clubeService.listarClubePorId(id) != null){
+            clubeService.deletarClube(id);
+            return ResponseEntity.ok("Clube removido com sucesso!");
+        } else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("O Clube com o ID: " + id + " não foi encontrado!");
+        }
     }
 
 }

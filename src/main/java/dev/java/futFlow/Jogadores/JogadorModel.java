@@ -4,12 +4,14 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Table(name = "tb_cadastro")
 @NoArgsConstructor //constructor no args
 @AllArgsConstructor //constructor all args
 @Data //getters - setters
+@ToString(exclude = "clube")
 public class JogadorModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

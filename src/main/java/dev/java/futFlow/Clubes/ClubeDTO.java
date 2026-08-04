@@ -18,7 +18,6 @@ public class ClubeDTO {
         private int anoDeCriacao;
         private List<JogadorModel> jogador;
         private String campeonatoNacional;
-
     }
 
 

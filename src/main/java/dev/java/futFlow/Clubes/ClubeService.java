@@ -1,5 +1,7 @@
 package dev.java.futFlow.Clubes;
+
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -22,8 +24,8 @@ public class ClubeService {
     }
 
     public List<ClubeDTO> listarClubes(){
-        List<ClubeModel> clubes = clubeRepository.findAll();
-        return clubes.stream()
+        return clubeRepository.findAll()
+                .stream()
                 .map(clubeMapper::map)
                 .collect(Collectors.toList());
     }
@@ -33,9 +35,13 @@ public class ClubeService {
         return clubePorId.map(clubeMapper::map).orElse(null);
     }
 
+    public ClubeModel buscarClubeModelPorId(Long id){
+        return clubeRepository.findById(id).orElse(null);
+    }
+
     public ClubeDTO alterarClube(Long id, ClubeDTO clubeDTO){
-        Optional<ClubeModel> alterarClube = clubeRepository.findById(id);
-        if (alterarClube.isPresent()){
+        Optional<ClubeModel> clubeExistente = clubeRepository.findById(id);
+        if (clubeExistente.isPresent()) {
             ClubeModel clubeAtualizado = clubeMapper.map(clubeDTO);
             clubeAtualizado.setId(id);
             ClubeModel clube = clubeRepository.save(clubeAtualizado);
@@ -47,7 +53,4 @@ public class ClubeService {
     public void deletarClube(Long id){
         clubeRepository.deleteById(id);
     }
-
-
-
 }

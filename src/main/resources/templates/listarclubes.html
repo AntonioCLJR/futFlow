@@ -3,75 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>FutFlow · Jogadores</title>
+    <title>FutFlow · Clubes</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
-<<header class="topbar">
+<header class="topbar">
     <div class="topbar-content">
         <div class="topbar-left">
-            <span class="crest">⚽</span>
+            <span class="crest">🏆</span>
             <div>
                 <h1>FutFlow</h1>
-                <p class="subtitle">Escalação completa do elenco</p>
+                <p class="subtitle">Clubes cadastrados</p>
             </div>
         </div>
-        <a class="btn-add" th:href="@{/jogadores/ui/adicionar}">+ Adicionar Jogador</a>
+        <a class="btn-add" th:href="@{/clubes/ui/adicionar}">+ Adicionar Clube</a>
     </div>
 </header>
 
 <main class="content">
+
     <nav class="main-nav">
-        <a class="active" th:href="@{/jogadores/ui/listar}">Jogadores</a>
-        <a th:href="@{/clubes/ui/listar}">Clubes</a>
+        <a th:href="@{/jogadores/ui/listar}">Jogadores</a>
+        <a class="active" th:href="@{/clubes/ui/listar}">Clubes</a>
     </nav>
+
     <div class="table-card">
         <table>
             <thead>
             <tr>
                 <th>ID</th>
                 <th>Nome</th>
-                <th>Idade</th>
-                <th>Clube</th>
-                <th>Nacionalidade</th>
-                <th>Posição</th>
-                <th>Camisa</th>
-                <th>Email</th>
+                <th>Federação</th>
+                <th>Campeonato</th>
+                <th>País</th>
+                <th>Fundado em</th>
+                <th>Elenco</th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="jogadores : ${jogadores}">
-                <td class="id-cell" th:text="${jogadores.id}"></td>
-                <td class="name-cell" th:text="${jogadores.nome}"></td>
-                <td th:text="${jogadores.idade}"></td>
-                <td th:text="${jogadores.clubeNome}"></td>
-                <td th:text="${jogadores.nacionalidade}"></td>
-                <td>
-                    <span class="pos-badge" th:text="${jogadores.posicao}" th:attr="data-pos=${jogadores.posicao}"></span>
-                </td>
-                <td>
-                    <span class="jersey" th:text="${jogadores.numeroDaCamisa}"></span>
-                </td>
-                <td class="email-cell" th:text="${jogadores.email}"></td>
+            <tr th:each="clube : ${clubes}">
+                <td class="id-cell" th:text="${clube.id}"></td>
+                <td class="name-cell" th:text="${clube.nomeClube}"></td>
+                <td th:text="${clube.federacao}"></td>
+                <td th:text="${clube.campeonatoNacional}"></td>
+                <td th:text="${clube.pais}"></td>
+                <td th:text="${clube.anoDeCriacao}"></td>
+                <td><span class="jersey" th:text="${#lists.size(clube.jogador)}"></span></td>
                 <td class="actions-cell">
-                <td class="actions-cell">
-                    <a class="icon-btn icon-btn-details" th:href="@{/jogadores/ui/detalhes/{id}(id=${jogadores.id})}" title="Ver detalhes">
+                    <a class="icon-btn icon-btn-details" th:href="@{/clubes/ui/detalhes/{id}(id=${clube.id})}" title="Ver detalhes">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
                             <circle cx="12" cy="12" r="3"/>
                         </svg>
                     </a>
-                    <a class="icon-btn icon-btn-edit" th:href="@{/jogadores/ui/alterar/{id}(id=${jogadores.id})}" title="Editar jogador">
+                    <a class="icon-btn icon-btn-edit" th:href="@{/clubes/ui/alterar/{id}(id=${clube.id})}" title="Editar clube">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
                             <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
                         </svg>
                     </a>
-                    <a class="icon-btn icon-btn-delete" th:href="@{/jogadores/ui/deletar/{id}(id=${jogadores.id})}" title="Deletar jogador">
+                    <a class="icon-btn icon-btn-delete" th:href="@{/clubes/ui/deletar/{id}(id=${clube.id})}" title="Deletar clube">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M3 6h18"/>
                             <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
@@ -84,6 +79,7 @@
             </tbody>
         </table>
     </div>
+
 </main>
 
 </body>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FutFlow · Adicionar Clube</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header class="topbar">
+    <div class="topbar-content">
+        <div class="topbar-left">
+            <span class="crest">🏆</span>
+            <div>
+                <h1>FutFlow</h1>
+                <p class="subtitle">Adicionar novo clube</p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="content">
+
+    <a class="btn-back" th:href="@{/clubes/ui/listar}">&larr; Voltar para a lista</a>
+
+    <div class="player-card">
+
+        <form th:action="@{/clubes/ui/adicionar}" th:object="${novoClube}" method="post" class="form-grid">
+
+            <div class="form-group">
+                <label for="nomeClube">Nome do Clube</label>
+                <input type="text" id="nomeClube" th:field="*{nomeClube}" placeholder="Ex: Santos FC" required>
+            </div>
+
+            <div class="form-group">
+                <label for="federacao">Federação</label>
+                <input type="text" id="federacao" th:field="*{federacao}" placeholder="Ex: CBF" required>
+            </div>
+
+            <div class="form-group">
+                <label for="campeonatoNacional">Campeonato Nacional</label>
+                <input type="text" id="campeonatoNacional" th:field="*{campeonatoNacional}" placeholder="Ex: Brasileirão Série A" required>
+            </div>
+
+            <div class="form-group">
+                <label for="pais">País</label>
+                <input type="text" id="pais" th:field="*{pais}" placeholder="Ex: Brasil" required>
+            </div>
+
+            <div class="form-group">
+                <label for="anoDeCriacao">Ano de Criação</label>
+                <input type="number" id="anoDeCriacao" th:field="*{anoDeCriacao}" min="1850" max="2026" required>
+            </div>
+
+            <div class="player-actions form-actions">
+                <a class="btn-back" th:href="@{/clubes/ui/listar}">Cancelar</a>
+                <button type="submit" class="btn-save">Salvar Clube</button>
+            </div>
+
+        </form>
+
+    </div>
+
+</main>
+
+</body>
+</html>

@@ -1,251 +1,150 @@
-#⚽ FutFlow
+# ⚽ FutFlow
 
-O FutFlow é uma API REST desenvolvida com Java e Spring Boot, criada com o objetivo de aplicar conceitos de desenvolvimento Backend utilizados no mercado.
+API REST para gerenciamento de **clubes e jogadores de futebol**, desenvolvida com **Java e Spring Boot**.
 
-O projeto possui gerenciamento de clubes e jogadores, relacionamento entre entidades, utilização de DTOs e Mappers, persistência com PostgreSQL e versionamento do banco de dados utilizando Flyway.
+O projeto utiliza arquitetura em camadas, DTOs, Mappers, JPA/Hibernate e PostgreSQL, além de Flyway para versionamento do banco de dados.
 
-A aplicação também está preparada para execução utilizando Docker e Docker Compose, facilitando a configuração do ambiente.
+A aplicação também pode ser executada utilizando Docker e Docker Compose.
 
-🎯 Objetivo
+---
 
-Este projeto foi desenvolvido com o propósito de:
+## 🚀 Tecnologias
 
-Praticar desenvolvimento Backend com Java.
-Aplicar boas práticas de arquitetura.
-Construir um projeto de portfólio para demonstrar conhecimentos em Spring Boot.
-Evoluir continuamente adicionando novas funcionalidades utilizadas no mercado.
-🚀 Tecnologias Utilizadas
-Java 21
-Spring Boot
-Spring Data JPA
-Hibernate
-Flyway
-PostgreSQL
-Maven
-Swagger
-Docker
-Docker Compose
-Lombok
-Git
-GitHub
-📂 Arquitetura do Projeto
+- Java 21
+- Spring Boot
+- Spring Data JPA
+- Hibernate
+- PostgreSQL
+- Flyway
+- Maven
+- Lombok
+- Swagger
+- Docker
+- Docker Compose
 
-O projeto utiliza uma Arquitetura em Camadas, separando cada responsabilidade da aplicação.
+---
 
-      Cliente
-                    │
-                    ▼
-              Controller
-                    │
-                    ▼
-                Service
-                    │
-                    ▼
-               Repository
-                    │
-                    ▼
-               PostgreSQL
+## 📂 Estrutura
 
+O projeto é organizado em módulos de **Clubes** e **Jogadores**, seguindo uma arquitetura em camadas:
 
-Fluxo de uma requisição
-Request
+```text
+src/main/java/dev.java.futFlow
+
+├── Clubes
+│   ├── ClubeController
+│   ├── ClubeControllerUi
+│   ├── ClubeDTO
+│   ├── ClubeMapper
+│   ├── ClubeModel
+│   ├── ClubeRepository
+│   └── ClubeService
 │
-▼
-Controller
+├── Jogadores
+│   ├── JogadorController
+│   ├── JogadorControllerUi
+│   ├── JogadorDTO
+│   ├── JogadorMapper
+│   ├── JogadorModel
+│   ├── JogadorRepository
+│   └── JogadorService
 │
-▼
-DTO
-│
-▼
-Service
-│
-▼
-Mapper
-│
-▼
-Model
-│
-▼
-Repository
-│
-▼
-PostgreSQL
+└── FutFlowApplication
+```
 
-📌 Funcionalidades
-
-👤 Jogadores
-Cadastro de jogadores
-Consulta de jogadores
-Consulta de jogador por ID
-Atualização de jogadores
-Exclusão de jogadores
-Associação de jogador a um clube
-Definição da posição do jogador
-Persistência utilizando PostgreSQL
-⚽ Clubes
-Cadastro de clubes
-Consulta de clubes
-Consulta de clube por ID
-Atualização de clubes
-Exclusão de clubes
-Associação entre clubes e jogadores
-
-🛣️ Roadmap
-
-O projeto continuará evoluindo com novas funcionalidades.
-
-✅ Concluído
-CRUD de Jogadores
-Arquitetura em Camadas
-DTO
-Mapper
-Spring Data JPA
-Hibernate
-Flyway
-Swagger
-Banco H2
-CRUD de Clubes
-Relacionamento Clube × Jogadores
-🚧 Em desenvolvimento
-Tratamento Global de Exceções
-Bean Validation
-📅 Próximas funcionalidades
-Campeonato
-Partidas
-Estatísticas
-Técnicos
-Transferências
-Upload de imagens
-Spring Security
-Autenticação JWT
-PostgreSQL
-Docker
-Testes Unitários
-Testes de Integração
-GitHub Actions (CI/CD)
-📖 Conceitos Aplicados
-
-Este projeto utiliza diversos conceitos importantes do desenvolvimento Backend.
-
-Arquitetura em Camadas
-REST API
-CRUD
-DTO
-Mapper
-JPA
-Hibernate
-Flyway
-ORM
-Injeção de Dependência
-Inversão de Controle (IoC)
-Versionamento de Banco de Dados
-📡 Endpoints
+⚽ Funcionalidades
+Clubes
+Cadastro
+Listagem
+Consulta por ID
+Atualização
+Exclusão
 Jogadores
+Cadastro
+Listagem
+Consulta por ID
+Atualização
+Exclusão
+Associação com clube
+Definição da posição
+
+🔗 Endpoints
+Jogadores
+
 Método	Endpoint	Descrição
-GET	/jogadores	Lista todos os jogadores
-GET	/jogadores/{id}	Busca um jogador pelo ID
-POST	/jogadores	Cadastra um jogador
-PUT	/jogadores/{id}	Atualiza um jogador
-DELETE	/jogadores/{id}	Remove um jogador
+GET	/jogadores	Lista jogadores
+GET	/jogadores/{id}	Busca jogador por ID
+POST	/jogadores	Cadastra jogador
+PUT	/jogadores/{id}	Atualiza jogador
+DELETE	/jogadores/{id}	Remove jogador
 
-Conforme o projeto evoluir, novos módulos e endpoints serão adicionados.
+Clubes
+Método	Endpoint	Descrição
+GET	/clubes	Lista clubes
+GET	/clubes/{id}	Busca clube por ID
+POST	/clubes	Cadastra clube
+PUT	/clubes/{id}	Atualiza clube
+DELETE	/clubes/{id}	Remove clube
 
-#▶️ Como executar o projeto
+▶️ Como executar
 Pré-requisitos
-
-Antes de executar o projeto, tenha instalado:
-
 Java 21
-Maven
 Docker
 Docker Compose
 Git
 
-Clone o repositório
-git clone 
-AntonioCLJR/futFlow.gitit
-Entre na pasta
+1. Clone o projeto
+git clone https://github.com/AntonioCLJR/futFlow.git
+2. Entre na pasta
 cd futFlow
-Configure as variáveis de ambiente
+3. Configure o .env
 
-Crie um arquivo:
-
-.env
-
-Configure as variáveis necessárias:
-
-DATABASE_USERNAME=futflowadm
-DATABASE_PASSWORD=futflowadm
+Crie um arquivo .env na raiz do projeto:
 
 POSTGRES_DB=futflow
 POSTGRES_USER=futflowadm
 POSTGRES_PASSWORD=futflowadm
 
-O DATABASE_URL utilizado pelo container da aplicação é configurado pelo docker-compose.yml, utilizando o nome do serviço postgres.
-
-Suba os containers
-
-Execute:
-
+4. Execute com Docker Compose
 docker compose up -d
 
-O Docker Compose irá iniciar:
-
-futflow-postgres
-futflow
-
-Para verificar os containers:
+Verifique os containers:
 
 docker compose ps
 
-Visualizar os logs
-
-Para visualizar os logs da aplicação:
+Para visualizar os logs:
 
 docker compose logs -f futflow
+📖 Swagger
 
-Para visualizar os logs do PostgreSQL:
-
-docker compose logs -f postgres
-6. Acesse a API
-
-Após os containers iniciarem:
-
-http://localhost:8080/clubes/ui/listar
-
-📄 Documentação da API
-
-Após iniciar a aplicação, acesse o Swagger em:
+Com a aplicação executando, acesse:
 
 http://localhost:8080/swagger-ui/index.html
 
-💾 Banco de Dados
+🗄️ Banco de Dados
 
-Durante o desenvolvimento, o projeto utiliza o banco de dados POSTGRESQL.
+O projeto utiliza PostgreSQL e Flyway para gerenciamento e versionamento das migrations.
 
-📈 Evolução do Projeto
+O Docker Compose configura automaticamente o banco de dados necessário para a aplicação.
 
-O FutFlow é um projeto em evolução.
-
-Novas funcionalidades serão implementadas conforme o aprendizado de novas tecnologias, tornando a aplicação cada vez mais próxima de um sistema utilizado em ambientes reais.
-
-🤝 Contribuições
-
-Sugestões, melhorias e feedbacks são sempre bem-vindos.
-
-Caso encontre algum problema ou tenha alguma ideia, fique à vontade para abrir entrar em contato
+🛣️ Próximos passos
+Tratamento global de exceções
+Bean Validation
+Campeonatos
+Partidas
+Estatísticas
+Spring Security
+JWT
+Testes unitários
+Testes de integração
+CI/CD
 
 👨‍💻 Desenvolvedor
 
 Antonio Carlos de Souza Junior
 
-Desenvolvedor Backend Java com foco em Spring Boot, APIs REST e boas práticas de arquitetura de software.
+Desenvolvedor Backend Java com foco em Spring Boot, APIs REST e boas práticas de desenvolvimento.
 
-GitHub: 
-https://github.com/AntonioCLJRR
 LinkedIn: https://www.linkedin.com/in/acsjunior
-⭐ Se este projeto foi útil...
 
-Se este projeto foi útil ou te ajudou de alguma forma, deixe uma ⭐ no repositório.
-
-Isso incentiva a evolução do projeto e ajuda outras pessoas a encontrá-lo.
+⭐ Se gostou do projeto, considere deixar uma estrela no repositório.

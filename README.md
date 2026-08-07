@@ -80,6 +80,7 @@ Repository
    │
    ▼
 PostgreSQL
+```
 📌 Funcionalidades
 👤 Jogadores
 Cadastro de jogadores

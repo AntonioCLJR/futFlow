@@ -1,10 +1,10 @@
 # ⚽ FutFlow
 
-> **API REST para gerenciamento de clubes, jogadores e competições de futebol desenvolvida com Java e Spring Boot.**
+O **FutFlow** é uma API REST desenvolvida com **Java e Spring Boot**, criada com o objetivo de aplicar conceitos de desenvolvimento Backend utilizados no mercado.
 
-O **FutFlow** é um projeto Backend criado para aplicar conceitos modernos de desenvolvimento utilizando **Spring Boot**, seguindo uma arquitetura em camadas e boas práticas de programação.
+O projeto possui gerenciamento de **clubes e jogadores**, relacionamento entre entidades, utilização de **DTOs e Mappers**, persistência com **PostgreSQL** e versionamento do banco de dados utilizando **Flyway**.
 
-O objetivo é evoluir continuamente o projeto, transformando-o em uma API completa para gerenciamento do universo do futebol, desde jogadores e clubes até campeonatos, partidas e estatísticas.
+A aplicação também está preparada para execução utilizando **Docker e Docker Compose**, facilitando a configuração do ambiente.
 
 ---
 
@@ -15,6 +15,8 @@ Este projeto foi desenvolvido com o propósito de:
 - Praticar desenvolvimento Backend com Java.
 - Aplicar boas práticas de arquitetura.
 - Construir um projeto de portfólio para demonstrar conhecimentos em Spring Boot.
+- Trabalhar com persistência de dados utilizando PostgreSQL.
+- Utilizar Docker para padronizar o ambiente de execução.
 - Evoluir continuamente adicionando novas funcionalidades utilizadas no mercado.
 
 ---
@@ -26,9 +28,11 @@ Este projeto foi desenvolvido com o propósito de:
 - Spring Data JPA
 - Hibernate
 - Flyway
-- H2 Database
+- PostgreSQL
 - Maven
-- Swagger
+- Swagger / OpenAPI
+- Docker
+- Docker Compose
 - Lombok
 - Git
 - GitHub
@@ -37,196 +41,256 @@ Este projeto foi desenvolvido com o propósito de:
 
 # 📂 Arquitetura do Projeto
 
-O projeto utiliza uma **Arquitetura em Camadas**, separando cada responsabilidade da aplicação.
+O projeto utiliza uma **Arquitetura em Camadas**, separando as responsabilidades da aplicação.
 
 ```text
 Cliente
-    │
-    ▼
+   │
+   ▼
 Controller
-    │
-    ▼
+   │
+   ▼
 Service
-    │
-    ▼
+   │
+   ▼
 Repository
-    │
-    ▼
-Banco de Dados
-```
-
----
-
-# 📌 Funcionalidades
-
-## Atualmente
-
-- Cadastro de jogadores
-- Consulta de jogadores
-- Atualização de jogadores
-- Exclusão de jogadores
-- Persistência utilizando Spring Data JPA
-- Versionamento do banco com Flyway
-- Documentação da API com Swagger
-- Banco de dados H2
-
----
-
-# 🛣️ Roadmap
+   │
+   ▼
+PostgreSQL
+Fluxo de uma requisição
+Request
+   │
+   ▼
+Controller
+   │
+   ▼
+DTO
+   │
+   ▼
+Service
+   │
+   ▼
+Mapper
+   │
+   ▼
+Model
+   │
+   ▼
+Repository
+   │
+   ▼
+PostgreSQL
+📌 Funcionalidades
+👤 Jogadores
+Cadastro de jogadores
+Consulta de jogadores
+Consulta de jogador por ID
+Atualização de jogadores
+Exclusão de jogadores
+Associação de jogador a um clube
+Definição da posição do jogador
+Persistência utilizando PostgreSQL
+⚽ Clubes
+Cadastro de clubes
+Consulta de clubes
+Consulta de clube por ID
+Atualização de clubes
+Exclusão de clubes
+Associação entre clubes e jogadores
+🛣️ Roadmap
 
 O projeto continuará evoluindo com novas funcionalidades.
 
-## ✅ Concluído
+✅ Concluído
+CRUD de Jogadores
+CRUD de Clubes
+Arquitetura em Camadas
+DTO
+Mapper
+Spring Data JPA
+Hibernate
+Flyway
+Swagger
+PostgreSQL
+Docker
+Docker Compose
+Relacionamento Clube × Jogadores
+Enum para posição dos jogadores
+🚧 Em desenvolvimento
+Tratamento Global de Exceções
+Bean Validation
+📅 Próximas funcionalidades
+Campeonato
+Partidas
+Estatísticas
+Técnicos
+Transferências
+Upload de imagens
+Spring Security
+Autenticação JWT
+Testes Unitários
+Testes de Integração
+GitHub Actions (CI/CD)
+📖 Conceitos Aplicados
 
-- CRUD de Jogadores
-- Arquitetura em Camadas
-- DTO
-- Mapper
-- Spring Data JPA
-- Hibernate
-- Flyway
-- Swagger
-- Banco H2
-- CRUD de Clubes
-- Relacionamento Clube × Jogadores
+Este projeto utiliza diversos conceitos importantes do desenvolvimento Backend:
 
-## 🚧 Em desenvolvimento
+Arquitetura em Camadas
+REST API
+CRUD
+DTO
+Mapper
+JPA
+Hibernate
+ORM
+Spring Data JPA
+Injeção de Dependência
+Inversão de Controle (IoC)
+Relacionamentos entre entidades
+Enum
+Versionamento de Banco de Dados
+Flyway
+PostgreSQL
+Docker
+Docker Compose
+Variáveis de Ambiente
+📡 Endpoints
+👤 Jogadores
+Método	Endpoint	Descrição
+GET	/jogadores	Lista todos os jogadores
+GET	/jogadores/{id}	Busca um jogador pelo ID
+POST	/jogadores	Cadastra um jogador
+PUT	/jogadores/{id}	Atualiza um jogador
+DELETE	/jogadores/{id}	Remove um jogador
+⚽ Clubes
+Método	Endpoint	Descrição
+GET	/clubes	Lista todos os clubes
+GET	/clubes/{id}	Busca um clube pelo ID
+POST	/clubes	Cadastra um clube
+PUT	/clubes/{id}	Atualiza um clube
+DELETE	/clubes/{id}	Remove um clube
 
-- Tratamento Global de Exceções
-- Bean Validation
+Conforme o projeto evoluir, novos módulos e endpoints serão adicionados.
 
-## 📅 Próximas funcionalidades
+▶️ Como executar o projeto
+Pré-requisitos
 
-- Campeonato
-- Partidas
-- Estatísticas
-- Técnicos
-- Transferências
-- Upload de imagens
-- Spring Security
-- Autenticação JWT
-- PostgreSQL
-- Docker
-- Testes Unitários
-- Testes de Integração
-- GitHub Actions (CI/CD)
+Antes de executar o projeto, tenha instalado:
 
----
-
-# 📖 Conceitos Aplicados
-
-Este projeto utiliza diversos conceitos importantes do desenvolvimento Backend.
-
-- Arquitetura em Camadas
-- REST API
-- CRUD
-- DTO
-- Mapper
-- JPA
-- Hibernate
-- Flyway
-- ORM
-- Injeção de Dependência
-- Inversão de Controle (IoC)
-- Versionamento de Banco de Dados
-
----
-
-# 📡 Endpoints
-
-## Jogadores
-
-| Método | Endpoint | Descrição |
-|---------|----------|-----------|
-| GET | `/jogadores` | Lista todos os jogadores |
-| GET | `/jogadores/{id}` | Busca um jogador pelo ID |
-| POST | `/jogadores` | Cadastra um jogador |
-| PUT | `/jogadores/{id}` | Atualiza um jogador |
-| DELETE | `/jogadores/{id}` | Remove um jogador |
-
-> Conforme o projeto evoluir, novos módulos e endpoints serão adicionados.
-
----
-
-# ▶️ Como executar o projeto
-
-## 1. Clone o repositório
-
-```bash
+Java 21
+Maven
+Docker
+Docker Compose
+Git
+1. Clone o repositório
 git clone https://github.com/AntonioCLJR/futFlow.git
-```
-
-## 2. Entre na pasta do projeto
-
-```bash
+2. Entre na pasta
 cd futFlow
-```
+3. Configure as variáveis de ambiente
 
-## 3. Execute a aplicação
+Crie um arquivo chamado:
 
-```bash
-mvn spring-boot:run
-```
+.env
 
-A aplicação será iniciada em:
+Configure as variáveis necessárias:
 
-```text
-http://localhost:8080
-```
+DATABASE_USERNAME=futflowadm
+DATABASE_PASSWORD=futflowadm
 
----
+POSTGRES_DB=futflow
+POSTGRES_USER=futflowadm
+POSTGRES_PASSWORD=futflowadm
 
-# 📄 Documentação da API
+Importante: não envie o arquivo .env para o GitHub. Adicione .env ao seu .gitignore.
 
-Após iniciar a aplicação, acesse o Swagger em:
+O DATABASE_URL utilizado pelo container do FutFlow é configurado pelo docker-compose.yml, utilizando o nome do serviço postgres como hostname.
 
-```text
+4. Suba os containers
+
+Execute:
+
+docker compose up -d
+
+O Docker Compose irá iniciar:
+
+futflow-postgres
+futflow
+
+Para verificar o status dos containers:
+
+docker compose ps
+5. Visualizar os logs
+
+Para visualizar os logs da aplicação:
+
+docker compose logs -f futflow
+
+Para visualizar os logs do PostgreSQL:
+
+docker compose logs -f postgres
+6. Acesse a aplicação
+
+Após os containers iniciarem, acesse:
+
+http://localhost:8080/clubes/ui/listar
+
+Essa rota apresenta a interface de listagem dos clubes.
+
+📄 Documentação da API
+
+A API possui documentação através do Swagger / OpenAPI.
+
+Após iniciar a aplicação, acesse:
+
 http://localhost:8080/swagger-ui/index.html
-```
 
----
+O Swagger permite visualizar e testar os endpoints disponíveis na API.
 
-# 💾 Banco de Dados
+💾 Banco de Dados
 
-Durante o desenvolvimento, o projeto utiliza o banco de dados **H2**.
+O FutFlow utiliza PostgreSQL como banco de dados.
 
-Acesse o console em:
+O banco é executado através de um container Docker e possui persistência de dados utilizando um volume:
 
-```text
-http://localhost:8080/h2-console
-```
+Docker
+   │
+   ▼
+PostgreSQL
+   │
+   ▼
+futflow_postgres_data
 
----
+O projeto utiliza Flyway para controlar as alterações e versões do banco de dados através de migrations.
 
-# 📈 Evolução do Projeto
+🐳 Docker
 
-O **FutFlow** é um projeto em constante evolução.
+O projeto utiliza Docker para facilitar a configuração do ambiente.
 
-Novas funcionalidades serão implementadas conforme o aprendizado de novas tecnologias, tornando a aplicação cada vez mais próxima de um sistema utilizado em ambientes reais.
+O docker-compose.yml executa dois serviços:
 
----
+┌───────────────────────────────┐
+│         Docker Compose        │
+│                               │
+│  ┌─────────────────────────┐  │
+│  │        FutFlow          │  │
+│  │      Spring Boot        │  │
+│  │         :8080           │  │
+│  └────────────┬────────────┘  │
+│               │               │
+│               ▼               │
+│  ┌─────────────────────────┐  │
+│  │       PostgreSQL        │  │
+│  │         :5432           │  │
+│  └─────────────────────────┘  │
+│                               │
+└───────────────────────────────┘
 
-# 🤝 Contribuições
+O PostgreSQL possui um healthcheck, garantindo que o banco esteja disponível antes da inicialização da aplicação.
 
-Sugestões, melhorias e feedbacks são sempre bem-vindos.
+📈 Evolução do Projeto
 
-Caso encontre algum problema ou tenha alguma ideia, fique à vontade para abrir uma **Issue** ou enviar um **Pull Request**.
+O FutFlow é um projeto em evolução.
 
----
+A proposta é começar com o gerenciamento de clubes e jogadores e, gradualmente, transformar a aplicação em uma plataforma mais completa relacionada ao universo do futebol.
 
-# 👨‍💻 Desenvolvedor
-
-**Antonio Carlos de Souza Junior**
-
-Desenvolvedor Backend Java com foco em Spring Boot, APIs REST e boas práticas de arquitetura de software.
-
-- GitHub: https://github.com/AntonioCLJR
-- LinkedIn: https://www.linkedin.com/in/acsjunior
-
----
-
-# ⭐ Se este projeto foi útil...
-
-Se este projeto foi útil ou te ajudou de alguma forma, deixe uma **⭐** no repositório.
-
-Isso incentiva a evolução do projeto e ajuda outras pessoas a encontrá-lo.
+Novas funcionalidades serão adicionadas conforme o aprendizado de novas tecnologias e conceitos de desenvolvimento Backend.

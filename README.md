@@ -71,7 +71,6 @@ Definição da posição
 🔗 Endpoints
 Jogadores
 
-Método	Endpoint	Descrição
 GET	/jogadores	Lista jogadores
 GET	/jogadores/{id}	Busca jogador por ID
 POST	/jogadores	Cadastra jogador
@@ -79,7 +78,7 @@ PUT	/jogadores/{id}	Atualiza jogador
 DELETE	/jogadores/{id}	Remove jogador
 
 Clubes
-Método	Endpoint	Descrição
+
 GET	/clubes	Lista clubes
 GET	/clubes/{id}	Busca clube por ID
 POST	/clubes	Cadastra clube

@@ -71,19 +71,19 @@ Definição da posição
 🔗 Endpoints
 Jogadores
 
-GET	/jogadores	Lista jogadores
-GET	/jogadores/{id}	Busca jogador por ID
-POST	/jogadores	Cadastra jogador
-PUT	/jogadores/{id}	Atualiza jogador
-DELETE	/jogadores/{id}	Remove jogador
+1.GET	/jogadores	Lista jogadores
+2.GET	/jogadores/{id}	Busca jogador por ID
+3.POST	/jogadores	Cadastra jogador
+4.PUT	/jogadores/{id}	Atualiza jogador
+5.DELETE	/jogadores/{id}	Remove jogador
 
 Clubes
 
-GET	/clubes	Lista clubes
-GET	/clubes/{id}	Busca clube por ID
-POST	/clubes	Cadastra clube
-PUT	/clubes/{id}	Atualiza clube
-DELETE	/clubes/{id}	Remove clube
+1.GET	/clubes	Lista clubes
+2.GET	/clubes/{id}	Busca clube por ID
+3.POST	/clubes	Cadastra clube
+4.PUT	/clubes/{id}	Atualiza clube
+5.DELETE	/clubes/{id}	Remove clube
 
 ▶️ Como executar
 Pré-requisitos

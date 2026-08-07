@@ -23,7 +23,7 @@ public class JogadorControllerUi {
     public String mostrarTodosJogadores(Model model) {
         List<JogadorDTO> jogadores = jogadorService.listarJogadores();
         model.addAttribute("jogadores", jogadores);
-        return "listarJogadores";
+        return "listarjogadores";
     }
 
     @GetMapping("/detalhes/{id}")
@@ -41,7 +41,7 @@ public class JogadorControllerUi {
         model.addAttribute("novoJogador", new JogadorDTO());
         model.addAttribute("clubes", clubeRepository.findAll());
         model.addAttribute("posicoes", Posicao.values());
-        return "adicionarJogador";
+        return "adicionarjogador";
     }
 
     @PostMapping("/adicionar")

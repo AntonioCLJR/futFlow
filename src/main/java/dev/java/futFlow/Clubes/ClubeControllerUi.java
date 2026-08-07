@@ -36,7 +36,7 @@ public class ClubeControllerUi {
     @GetMapping("/adicionar")
     public String mostrarFormularioAdicionar(Model model) {
         model.addAttribute("novoClube", new ClubeDTO());
-        return "adicionarClube";
+        return "adicionarclube";
     }
 
     @PostMapping("/adicionar")
